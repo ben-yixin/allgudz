@@ -20,11 +20,11 @@ export const SwipeCards = () => {
 
                             <ImageBackground style={styles.imageBackground}
                                              imageStyle={styles.image}
-                                             source={placeholderImages.cardPlaceholder}>
+                                             source={placeholderImages.carPlaceholder}>
                                 <LinearGradient style={styles.gradient} colors={['transparent','rgba(0,0,0,0.9)']}>
                                     <View style={styles.cardDetails}>
-                                        <Text style={styles.name}>Dumbells</Text>
-                                        <Text style={styles.description}>Barely used</Text>
+                                        <Text style={styles.name}>Bugatti</Text>
+                                        <Text style={styles.description}>Mint Condition</Text>
                                     </View>
                                 </LinearGradient>
 
