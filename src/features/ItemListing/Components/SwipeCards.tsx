@@ -5,6 +5,24 @@ import {placeholderImages} from "../../../assets";
 import {LinearGradient} from "expo-linear-gradient";
 
 export const SwipeCards = () => {
+
+    const mockData = [
+        {
+            imageSrc: placeholderImages.carPlaceholder,
+            name: 'Bugatti',
+            description: 'Mint Condition'
+        },
+        {
+            imageSrc: placeholderImages.dumbellPlaceholder,
+            name: 'dumbells',
+            description: 'wanna get rid of these dumb ass bells'
+        },
+        {
+            imageSrc: placeholderImages.housePlaceholder,
+            name: 'New Mansion',
+            description: 'anyone want a house?'
+        }
+    ]
     return (
         <View style={styles.container}>
             <Swiper
@@ -13,18 +31,18 @@ export const SwipeCards = () => {
                 infinite
                 disableBottomSwipe
                 disableTopSwipe
-                cards={['YOOO', 'ALLGOODZ', 'WE RICH']}
-                renderCard={(card) => {
+                cards={mockData}
+                renderCard={(mockData: any) => {
                     return (
                         <View style={styles.card}>
 
                             <ImageBackground style={styles.imageBackground}
                                              imageStyle={styles.image}
-                                             source={placeholderImages.carPlaceholder}>
+                                             source={mockData.imageSrc}>
                                 <LinearGradient style={styles.gradient} colors={['transparent','rgba(0,0,0,0.9)']}>
                                     <View style={styles.cardDetails}>
-                                        <Text style={styles.name}>Bugatti</Text>
-                                        <Text style={styles.description}>Mint Condition</Text>
+                                        <Text style={styles.name}>{mockData.name}</Text>
+                                        <Text style={styles.description}>{mockData.description}</Text>
                                     </View>
                                 </LinearGradient>
 
@@ -47,7 +65,8 @@ export const SwipeCards = () => {
 };
 
 const styles = StyleSheet.create({
-    container: {},
+    container: {
+    },
     gradient: {
         height: '100%',
         borderRadius: 20,
@@ -56,6 +75,7 @@ const styles = StyleSheet.create({
         flex: 1,
         borderRadius: 20,
         borderWidth: 2,
+        borderRightWidth: 10,
         borderColor: "black",
         justifyContent: "center",
         backgroundColor: 'white',
@@ -67,6 +87,13 @@ const styles = StyleSheet.create({
     },
     imageBackground: {
         flex: 1,
+        // shadowOffset: {
+        //     width: -100,
+        // },
+        // shadowRadius: 100,
+        borderTopLeftRadius: 20,
+        borderBottomLeftRadius: 20,
+        backgroundColor: 'black'
     },
     image: {
         borderRadius: 20
