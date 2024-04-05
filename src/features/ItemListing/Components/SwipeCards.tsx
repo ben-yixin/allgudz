@@ -1,45 +1,83 @@
 import React from 'react';
-import {View, Button, StyleSheet, Text} from "react-native";
+import {View, StyleSheet, Text, ImageBackground} from "react-native";
 import Swiper from 'react-native-deck-swiper'
+import {placeholderImages} from "../../../assets";
+import {LinearGradient} from "expo-linear-gradient";
 
 export const SwipeCards = () => {
     return (
         <View style={styles.container}>
             <Swiper
+                marginBottom={100}
+                marginTop={100}
+                infinite
+                disableBottomSwipe
+                disableTopSwipe
                 cards={['YOOO', 'ALLGOODZ', 'WE RICH']}
                 renderCard={(card) => {
                     return (
                         <View style={styles.card}>
-                            <Text style={styles.text}>{card}</Text>
+
+                            <ImageBackground style={styles.imageBackground}
+                                             imageStyle={styles.image}
+                                             source={placeholderImages.cardPlaceholder}>
+                                <LinearGradient style={styles.gradient} colors={['transparent','rgba(0,0,0,0.9)']}>
+                                    <View style={styles.cardDetails}>
+                                        <Text style={styles.name}>Dumbells</Text>
+                                        <Text style={styles.description}>Barely used</Text>
+                                    </View>
+                                </LinearGradient>
+
+                            </ImageBackground>
                         </View>
                     )
                 }}
-                onSwiped={(cardIndex) => {console.log(cardIndex)}}
-                onSwipedAll={() => {console.log('onSwipedAll')}}
+                onSwiped={(cardIndex) => {
+                    console.log(cardIndex)
+                }}
+                onSwipedAll={() => {
+                    console.log('onSwipedAll')
+                }}
                 cardIndex={0}
                 backgroundColor={'#4FD0E9'}
-                stackSize= {3}>
+                stackSize={3}>
             </Swiper>
         </View>
     );
 };
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: "#F5FCFF"
+    container: {},
+    gradient: {
+        height: '100%',
+        borderRadius: 20,
     },
     card: {
         flex: 1,
-        borderRadius: 4,
+        borderRadius: 20,
         borderWidth: 2,
-        borderColor: "#E8E8E8",
+        borderColor: "black",
         justifyContent: "center",
-        backgroundColor: "white"
+        backgroundColor: 'white',
     },
-    text: {
-        textAlign: "center",
-        fontSize: 50,
-        backgroundColor: "transparent"
+    cardDetails: {
+        padding: 12,
+        position: 'absolute',
+        bottom: 40
+    },
+    imageBackground: {
+        flex: 1,
+    },
+    image: {
+        borderRadius: 20
+    },
+    name: {
+        fontSize: 30,
+        color: 'white',
+        fontWeight: 'bold'
+    },
+    description: {
+        fontSize: 14,
+        color: 'white',
     }
 });
