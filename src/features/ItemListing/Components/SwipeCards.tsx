@@ -5,6 +5,7 @@ import {placeholderImages} from "../../../assets";
 import {LinearGradient} from "expo-linear-gradient";
 import {Shadow} from "react-native-shadow-2";
 import {Octicons} from "@expo/vector-icons";
+import {Avatar} from "../../../components/Avatar/Avatar";
 
 export const SwipeCards = () => {
 
@@ -65,6 +66,7 @@ export const SwipeCards = () => {
                                             <View style={styles.cardDetails}>
                                                 <Text style={styles.name}>{mockData.name}</Text>
                                                 <Text style={styles.description}>{mockData.description}</Text>
+                                                <Avatar/>
                                             </View>
                                         </LinearGradient>
                                     </ImageBackground>
@@ -73,7 +75,7 @@ export const SwipeCards = () => {
                         )
                     }}
                     cardIndex={0}
-                    stackSize={3}
+                    stackSize={mockData.length}
                 >
                 </Swiper>
 
@@ -137,7 +139,7 @@ const styles = StyleSheet.create({
     cardDetails: {
         padding: 12,
         position: 'absolute',
-        bottom: 40
+        bottom: 30
     },
     imageBackground: {
         borderRadius: 20,
@@ -153,6 +155,7 @@ const styles = StyleSheet.create({
     description: {
         fontSize: 14,
         color: 'white',
+        marginBottom: 10,
     },
     cardControls: {
         width: '100%',
