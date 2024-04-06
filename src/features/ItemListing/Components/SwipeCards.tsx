@@ -1,11 +1,14 @@
-import React from 'react';
-import {View, StyleSheet, Text, ImageBackground} from "react-native";
+import React, {useRef} from 'react';
+import {View, StyleSheet, Text, ImageBackground, SafeAreaView, TouchableOpacity} from "react-native";
 import Swiper from 'react-native-deck-swiper'
 import {placeholderImages} from "../../../assets";
 import {LinearGradient} from "expo-linear-gradient";
 import {Shadow} from "react-native-shadow-2";
+import {Octicons} from "@expo/vector-icons";
 
 export const SwipeCards = () => {
+
+    const swiperRef = useRef(null);
 
     const mockData = [
         {
@@ -24,54 +27,101 @@ export const SwipeCards = () => {
             description: 'anyone want a house?'
         }
     ]
+
+    const handleSwipeRight = () => {
+        swiperRef.current.swipeRight();
+    }
+
+    const handleSwipeLeft = () => {
+        swiperRef.current.swipeLeft();
+    }
+
+
     return (
-        <View style={styles.container}>
-            <Swiper
-                marginBottom={100}
-                marginTop={100}
-                infinite
-                disableBottomSwipe
-                disableTopSwipe
-                cards={mockData}
-                renderCard={(mockData: any) => {
-                    return (
-                        <Shadow style={{height: '100%', width: '100%'}}
-                                distance={1}
-                                offset={[20, 20]}
-                                startColor={"#000000ff"}
-                                endColor={"#00000000"}
-                        >
-                            <View style={styles.card}>
-                                <ImageBackground style={styles.imageBackground}
-                                                 imageStyle={styles.image}
-                                                 source={mockData.imageSrc}>
-                                    <LinearGradient style={styles.gradient} colors={['transparent', 'rgba(0,0,0,0.9)']}>
-                                        <View style={styles.cardDetails}>
-                                            <Text style={styles.name}>{mockData.name}</Text>
-                                            <Text style={styles.description}>{mockData.description}</Text>
-                                        </View>
-                                    </LinearGradient>
-                                </ImageBackground>
-                            </View>
-                        </Shadow>
-                    )
-                }}
-                onSwiped={(cardIndex) => {
-                    console.log(cardIndex)
-                }}
-                onSwipedAll={() => {
-                    console.log('onSwipedAll')
-                }}
-                cardIndex={0}
-                backgroundColor={'#4FD0E9'}
-                stackSize={3}>
-            </Swiper>
-        </View>
+        <SafeAreaView>
+            <View style={styles.swipeContainer}>
+                <Swiper
+                    ref={swiperRef}
+                    containerStyle={styles.swipeComponentContainer}
+                    marginTop={30}
+                    marginBottom={200}
+                    infinite
+                    disableBottomSwipe
+                    disableTopSwipe
+                    cards={mockData}
+                    renderCard={(mockData: any) => {
+                        return (
+                            <Shadow style={styles.swipeCardShadow}
+                                    distance={1}
+                                    offset={[20, 20]}
+                                    startColor={"#000000ff"}
+                                    endColor={"#00000000"}
+                            >
+                                <View style={styles.card}>
+                                    <ImageBackground style={styles.imageBackground}
+                                                     imageStyle={styles.image}
+                                                     source={mockData.imageSrc}>
+                                        <LinearGradient style={styles.gradient}
+                                                        colors={['transparent', 'rgba(0,0,0,0.9)']}>
+                                            <View style={styles.cardDetails}>
+                                                <Text style={styles.name}>{mockData.name}</Text>
+                                                <Text style={styles.description}>{mockData.description}</Text>
+                                            </View>
+                                        </LinearGradient>
+                                    </ImageBackground>
+                                </View>
+                            </Shadow>
+                        )
+                    }}
+                    cardIndex={0}
+                    stackSize={3}
+                >
+                </Swiper>
+            </View>
+
+            <View style={styles.cardControls}>
+                <TouchableOpacity onPress={handleSwipeLeft}>
+                    <Shadow
+                        distance={1}
+                        offset={[2, 2]}
+                        startColor={"#000000ff"}
+                        endColor={"#00000000"}
+                    >
+                        <View style={styles.dislikeBtn}>
+                            <Octicons name="x" size={40} color={"#fff2e9"}/>
+                        </View>
+                    </Shadow>
+                </TouchableOpacity>
+
+                <TouchableOpacity onPress={handleSwipeRight}>
+                    <Shadow
+                        distance={1}
+                        offset={[2, 2]}
+                        startColor={"#000000ff"}
+                        endColor={"#00000000"}
+                    >
+
+                        <View style={styles.likeBtn}>
+                            <Octicons name="heart-fill" size={30} color={"#a0ffa0"}/>
+                        </View>
+                    </Shadow>
+                </TouchableOpacity>
+            </View>
+        </SafeAreaView>
     );
 };
 
 const styles = StyleSheet.create({
-    container: {},
+    swipeContainer: {
+        height: '85%'
+    },
+    swipeComponentContainer: {
+        backgroundColor: 'white'
+    },
+    swipeCardShadow: {
+        height: '100%',
+        width: '100%'
+    },
     gradient: {
         height: '100%',
         borderRadius: 20,
@@ -80,7 +130,8 @@ const styles = StyleSheet.create({
         height: '96%',
         width: '96%',
         borderRadius: 20,
-        backgroundColor: 'white',
+        backgroundColor: 'black',
+        borderWidth: 2,
     },
     cardDetails: {
         padding: 12,
@@ -91,7 +142,7 @@ const styles = StyleSheet.create({
         borderRadius: 20,
     },
     image: {
-        borderRadius: 20
+        borderRadius: 20,
     },
     name: {
         fontSize: 30,
@@ -101,5 +152,29 @@ const styles = StyleSheet.create({
     description: {
         fontSize: 14,
         color: 'white',
-    }
+    },
+    cardControls: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center',
+        gap: 20
+    },
+    likeBtn: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderWidth: 2,
+        backgroundColor: '#009855',
+        width: 70,
+        height: 70,
+        borderRadius: 50
+    },
+    dislikeBtn: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderWidth: 2,
+        backgroundColor: '#f17356',
+        width: 70,
+        height: 70,
+        borderRadius: 50
+    },
 });
