@@ -39,12 +39,11 @@ export const SwipeCards = () => {
 
     return (
         <SafeAreaView>
-            <View style={styles.swipeContainer}>
+            <View style={styles.container}>
                 <Swiper
                     ref={swiperRef}
                     containerStyle={styles.swipeComponentContainer}
-                    marginTop={30}
-                    marginBottom={200}
+                    marginBottom={220}
                     infinite
                     disableBottomSwipe
                     disableTopSwipe
@@ -77,46 +76,48 @@ export const SwipeCards = () => {
                     stackSize={3}
                 >
                 </Swiper>
-            </View>
 
-            <View style={styles.cardControls}>
-                <TouchableOpacity onPress={handleSwipeLeft}>
-                    <Shadow
-                        distance={1}
-                        offset={[2, 2]}
-                        startColor={"#000000ff"}
-                        endColor={"#00000000"}
-                    >
-                        <View style={styles.dislikeBtn}>
-                            <Octicons name="x" size={40} color={"#fff2e9"}/>
-                        </View>
-                    </Shadow>
-                </TouchableOpacity>
+                <View style={styles.cardControls}>
+                    <View style={{flexDirection: 'row', justifyContent: 'center', gap: 10}}>
+                        <TouchableOpacity onPress={handleSwipeLeft}>
+                            <Shadow
+                                distance={1}
+                                offset={[2, 2]}
+                                startColor={"#000000ff"}
+                                endColor={"#00000000"}
+                            >
+                                <View style={styles.dislikeBtn}>
+                                    <Octicons name="x" size={40} color={"#fff2e9"}/>
+                                </View>
+                            </Shadow>
+                        </TouchableOpacity>
 
-                <TouchableOpacity onPress={handleSwipeRight}>
-                    <Shadow
-                        distance={1}
-                        offset={[2, 2]}
-                        startColor={"#000000ff"}
-                        endColor={"#00000000"}
-                    >
+                        <TouchableOpacity onPress={handleSwipeRight}>
+                            <Shadow
+                                distance={1}
+                                offset={[2, 2]}
+                                startColor={"#000000ff"}
+                                endColor={"#00000000"}
+                            >
 
-                        <View style={styles.likeBtn}>
-                            <Octicons name="heart-fill" size={30} color={"#a0ffa0"}/>
-                        </View>
-                    </Shadow>
-                </TouchableOpacity>
+                                <View style={styles.likeBtn}>
+                                    <Octicons name="heart-fill" size={30} color={"#a0ffa0"}/>
+                                </View>
+                            </Shadow>
+                        </TouchableOpacity>
+                    </View>
+                </View>
             </View>
         </SafeAreaView>
     );
 };
 
 const styles = StyleSheet.create({
-    swipeContainer: {
-        height: '85%'
+    container: {
+        height: '100%'
     },
     swipeComponentContainer: {
-        backgroundColor: 'white'
+        backgroundColor: 'white',
     },
     swipeCardShadow: {
         height: '100%',
@@ -154,10 +155,9 @@ const styles = StyleSheet.create({
         color: 'white',
     },
     cardControls: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'center',
-        gap: 20
+        width: '100%',
+        position: 'absolute',
+        bottom: 100,
     },
     likeBtn: {
         justifyContent: 'center',
