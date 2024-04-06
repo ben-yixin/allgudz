@@ -62,7 +62,7 @@ export const SwipeCards = () => {
                                                      imageStyle={styles.image}
                                                      source={mockData.imageSrc}>
                                         <LinearGradient style={styles.gradient}
-                                                        colors={['transparent', 'rgba(0,0,0,0.9)']}>
+                                                        colors={['transparent', 'rgba(0,0,0,0.7)']}>
                                             <View style={styles.cardDetails}>
                                                 <Text style={styles.name}>{mockData.name}</Text>
                                                 <Text style={styles.description}>{mockData.description}</Text>
