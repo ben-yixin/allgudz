@@ -80,7 +80,7 @@ export const SwipeCards = () => {
                 </Swiper>
 
                 <View style={styles.cardControls}>
-                    <View style={{flexDirection: 'row', justifyContent: 'center', gap: 10}}>
+                    <View style={{flexDirection: 'row', justifyContent: 'center', gap: 20}}>
                         <TouchableOpacity onPress={handleSwipeLeft}>
                             <Shadow
                                 distance={1}
@@ -116,10 +116,10 @@ export const SwipeCards = () => {
 
 const styles = StyleSheet.create({
     container: {
-        height: '100%'
+        height: '100%',
     },
     swipeComponentContainer: {
-        backgroundColor: 'white',
+        backgroundColor: '#f2f2f2',
     },
     swipeCardShadow: {
         height: '100%',
@@ -160,7 +160,7 @@ const styles = StyleSheet.create({
     cardControls: {
         width: '100%',
         position: 'absolute',
-        bottom: 100,
+        bottom: 50,
     },
     likeBtn: {
         justifyContent: 'center',
