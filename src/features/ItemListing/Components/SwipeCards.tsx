@@ -139,7 +139,7 @@ const styles = StyleSheet.create({
     cardDetails: {
         padding: 12,
         position: 'absolute',
-        bottom: 30
+        bottom: 10
     },
     imageBackground: {
         borderRadius: 20,
