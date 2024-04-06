@@ -44,7 +44,7 @@ export const SwipeCards = () => {
                 <Swiper
                     ref={swiperRef}
                     containerStyle={styles.swipeComponentContainer}
-                    marginBottom={220}
+                    marginBottom={200}
                     infinite
                     disableBottomSwipe
                     disableTopSwipe
@@ -160,7 +160,7 @@ const styles = StyleSheet.create({
     cardControls: {
         width: '100%',
         position: 'absolute',
-        bottom: 50,
+        bottom: 26,
     },
     likeBtn: {
         justifyContent: 'center',
